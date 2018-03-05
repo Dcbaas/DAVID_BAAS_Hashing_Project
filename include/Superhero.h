@@ -1,10 +1,15 @@
-#include <string>
+#ifndef __H_SUPERHERO_
+#define __H_SUPERHERO_
 
-template <typename T>
+#include <string>
 
 class Superhero{
 
 public:
+
+  Superhero(int page_id, std::string name, std::string urlslug,
+  std::string id, std::string alignment, char eye_color, char hair_color
+  char sex, std::string gsm, bool alive, int appearances, int year);
 
   void setPageID(int page_id);
 
@@ -36,7 +41,7 @@ public:
 
   void setSex(char sex);
 
-  char getSex() const //should this be changed to be less dirty?
+  char getSex() const; //should this be changed to be less dirty?
 
   void setGSM(std::string gsm);
 
@@ -80,9 +85,10 @@ private:
 
   bool alive;
 
-  int apperances;
+  int appearances;
 
   std::string first_apperance;
 
   int year;
 };
+#endif

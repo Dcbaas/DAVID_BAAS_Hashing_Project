@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include "Superhero.h"
 
 
@@ -9,6 +10,9 @@ Superhero::Superhero(int page_id, const std::string &name, const std::string &ur
         hair_color(hair_color), sex(sex), gsm(gsm), alive(alive), appearances(appearances), first_apperance(first_apperance),
         year(year) {}
 
+std::string Superhero:: toString(){
+    return name;
+}
 
 //void Superhero::setPageID(int &page_id){
 //  Superhero::page_id = page_id;

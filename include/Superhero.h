@@ -11,6 +11,8 @@ public:
               const std::string &alignment, char eye_color, char hair_color, char sex, const std::string &gsm,
               bool alive, int appearances, const std::string &first_apperance, int year);  
 
+  std::string toString();
+
 //  void setPageID(int &page_id);
 
 //  int getPageID() const;

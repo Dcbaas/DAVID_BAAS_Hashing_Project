@@ -1,22 +1,10 @@
 #include <string>
 #include "Superhero.h"
 
-Superhero::Superhero(int page_id, std::string name, std::string urlslug,
-std::string id, std::string alignment, char eye_color, char hair_color
-char sex, std::string gsm, bool alive, int appearances, int year){
-  this.page_id = page_id;
-  this.name = name;
-  this.urlslug = urlslug;
-  this.id = id;
-  this.alignment = alignment;
-  
-  this.eye_color = eye_color;
-  this.hair_color = hair_color;
-  this.sex = sex;
-  
-  this.gsm = gsm;
-  this.alive = alive;
-  this.appearances = appearances;
-  this.year = year;
-}
 
+Superhero::Superhero(int page_id, const std::string &name, const std::string &urlslug, const std::string &id,
+                     const std::string &alignment, char eye_color, char hair_color, char sex, const std::string &gsm,
+                     bool alive, int appearances, const std::string &first_apperance, int year) :
+        page_id(page_id), name(name),urlslug(urlslug), id(id), alignment(alignment), eye_color(eye_color),
+        hair_color(hair_color), sex(sex), gsm(gsm), alive(alive), appearances(appearances), first_apperance(first_apperance),
+        year(year) {}

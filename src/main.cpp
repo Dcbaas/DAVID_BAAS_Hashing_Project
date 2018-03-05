@@ -7,7 +7,7 @@
 
 
 int main(int argc, char** argv){
-  std::ifstream in{"testDoc.txt"};
+  std::ifstream in{"marvel-wikia-data.csv"};
 
   std::vector<Superhero>* heroDB = new std::vector<Superhero>;
 
@@ -36,13 +36,30 @@ int main(int argc, char** argv){
     const std::string urlslug(params[2]);
     const std::string id(params[3]);
     const std::string alignment(params[4]);
-    char eye_color(params[5].at(0));
-    char hair_color(params[6].at(0));
-    char sex(params[7].at(0));
+   
+    char eye_color('V');
+    if(!params[5].empty())
+      eye_color = params[5].at(0);
+
+    char hair_color('V');
+    if(!params[6].empty())
+      hair_color = params[6].at(0);
+    
+    char sex('U');
+    if(!params[7].empty())
+      sex = params[7].at(0);
+ 
     const std::string gsm(params[8]);
-    int appearances(std::stoi(params[10]));
+
+    int appearances(1);
+    if(!params[10].empty())
+      appearances = std::stoi(params[10]);
+    
     const std::string first_apperance(params[11]);
-    int year(std::stoi(params[12]));
+   
+    int year(0);
+    if(!params[12].empty())   
+       year = std::stoi(params[12]);
 
     bool alive(true);
     if(params[9].at(0) == 'D')

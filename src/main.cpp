@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include "Superhero.h"
+#include "my_hash.h"
 
 Superhero superheroBuilder(std::string &input);
 

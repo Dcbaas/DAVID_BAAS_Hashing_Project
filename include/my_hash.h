@@ -1,6 +1,6 @@
-#include <vector> 
+#include <vector>
+#include <cstdlib> 
 #include <string> 
-
 
 template <typename T>
 
@@ -10,23 +10,34 @@ class my_hash{
 public:
 
   my_hash(){
-    data = new vector<T>[SIZE];
+    SIZE(17011); 
+    data.reserve(SIZE);
   }
 
-  ~my_hash(){
-    delete[] data;
+  ~my_hash(){}
+
+  bool insert(const T &element, int index){
+    data[index].insert(0,element);
+    return 1 < data[index].size();
   }
  /*********************************************************************
- * The first hash function takes the first 10 chars of the string and 
- * inserts them at the sumation of those 10 chars.
+ * The first hash function takes all of the chars of the key and sums
+ * up thier value. This is followed by at sum being muliplied by a 
+ * number between 1-5. This all modded by the size of the list. 
  * 
  * DO NOT USE THIS HASH FUNCTION IN CONJUNCTION WITH THE OTHER TWO
  * IT DEFEATS THE GOALS OF THE PROJECT.
  *
- * param: element T being inserted into the hash table.
  * param: key string being used to assign a hash value. 
+ * return: int result which will be the hash value. 
  *********************************************************************/
-  void function1(T element, const std::string key){
+  int hash1(const std::string key){
+    int hash(0);
+
+    for(char c: key)
+      hash += c;
+
+    return (hash * rand() % 5 + 1) % SIZE;
 
   }
  /**********************************************************************
@@ -34,34 +45,17 @@ public:
  *
  * 
  **********************************************************************/
-  void function2(T element, const std::string key){
-
+  int hash2(const std::string key){
+    return 0;
   }
 
-  void functson3(T element, const std::string key){
-
+  int hash3(const std::string key){
+    return 0;
   }
-
-  int getCollisions() const{
-    checkCollisions();
-    return collisions;
-  }
-
 private:
-  //An Array of Vectors to hold collisions. 
- std::vector<T>* data;  
+  //A vector of Vectors to hold collisions. 
+  std::vector<std::vector<T>> data;  
 
   //The size of the data array. A constant number that must always be prime.
-  const int SIZE(25243);
-
-  //A integer to track the number of collisions. 
-  int collisions(0);
-
-  void checkCollisions(){
-    //Maybe implement this in each fucntion
-    for(std::vector<T> element: data){
-      if(element.size() > 1)
-        collisions += element.size();
-    }
-  }
+  const int SIZE;
 };

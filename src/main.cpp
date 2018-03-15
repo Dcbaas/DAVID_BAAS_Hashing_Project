@@ -11,29 +11,36 @@ Superhero superheroBuilder(std::string &input);
 int main(int argc, char** argv){
   std::ifstream in{"marvel-wikia-data.csv"};
 
-  std::vector<Superhero>* heroDB = new std::vector<Superhero>;
-
+  //Stop the program if there is a file error. 
   if(not in){
     std::perror("File Error");
     return 0;
   }
+  //Three my_hash instances to store the superheros.
+  //One for each hash function created. 
+  my_hash<Superhero> hash1;
+  my_hash<Superhero> hash2;
+  my_hash<Superhero> hash3;
 
+  //Three int vars to track collisions for each
+  //my_hash variable. 
+  int collision1(0);
+  int collision2(0);
+  int collision3(0);
+
+  //String to read the input from the file.
   std::string input;
   
   //Get rid of the first line 
   std::getline(in,input);
  
+  //For every line in the file create a Superhero and add it to all
+  //three my_hash variables while also checking for collisions.
   while(std::getline(in,input)){
-          Superhero hero = superheroBuilder(input);
-
-        heroDB->push_back(hero);
-    }
-
-    for(auto hero_it(heroDB->begin()); hero_it < heroDB->end(); hero_it++){
-        Superhero output(*hero_it);
-        std::cout << output.toString() << std::endl;
-    }
-
+    Superhero hero = superheroBuilder(input);
+    if(hash1.insert(hero, hash1.hash1(hero.getName())))
+      ++collision1;
+  }
 
 }
 

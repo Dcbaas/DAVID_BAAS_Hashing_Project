@@ -9,15 +9,14 @@ class my_hash{
 
 public:
 
-  my_hash(){
-    SIZE(17011); 
+  my_hash(){ 
     data.reserve(SIZE);
   }
 
   ~my_hash(){}
 
   bool insert(const T &element, int index){
-    data[index].insert(0,element);
+    data[index].insert(data[index].begin(),std::move(element));
     return 1 < data[index].size();
   }
  /*********************************************************************
@@ -57,5 +56,5 @@ private:
   std::vector<std::vector<T>> data;  
 
   //The size of the data array. A constant number that must always be prime.
-  const int SIZE;
+  const int SIZE = 17011;
 };

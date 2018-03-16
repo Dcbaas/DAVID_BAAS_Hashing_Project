@@ -7,6 +7,7 @@
 #include "my_hash.h"
 
 Superhero superheroBuilder(std::string &input);
+void writeFile(int &collision1, int &collision2, int &collision3);
 
 int main(int argc, char** argv){
   std::ifstream in{"marvel-wikia-data.csv"};
@@ -18,9 +19,9 @@ int main(int argc, char** argv){
   }
   //Three my_hash instances to store the superheros.
   //One for each hash function created. 
-  my_hash<Superhero> hash1;
-  my_hash<Superhero> hash2;
-  my_hash<Superhero> hash3;
+  my_hash<Superhero> hashmap1;
+  my_hash<Superhero> hashmap2;
+  my_hash<Superhero> hashmap3;
 
   //Three int vars to track collisions for each
   //my_hash variable. 
@@ -38,11 +39,20 @@ int main(int argc, char** argv){
   //three my_hash variables while also checking for collisions.
   while(std::getline(in,input)){
     Superhero hero = superheroBuilder(input);
-    std::cout << hero.getName() << std::endl;
-    if(hash1.insert(hero, hash1.hash1(hero.getName())))
+    if(hashmap1.insert(hero, hashmap1.hash1(hero.getName()))){
       ++collision1;
-  }
+      std::cout << "Collide 1" << std::endl;
+      }
 
+    if(hashmap2.insert(hero, hashmap2.hash2(hero.getName()))){
+      ++collision2;
+      std::cout << "Collide 2" << std::endl;
+      }
+  }
+  
+  writeFile(collision1,collision2,collision3);
+
+  return 0;
 }
 
 
@@ -99,5 +109,17 @@ Superhero superheroBuilder(std::string &input){
                    hair_color, sex, gsm, alive, appearances, first_apperance, year);
 
     return hero;
+}
+
+void writeFile(int &collision1, int &collision2, int &collision3){
+  std::ofstream outputFile("Collisions Report.txt");
+
+  outputFile << "The number of collisions for hash1: " << collision1 << " Collisions" << std::endl;
+  outputFile << std::endl << "The number of collisions for hash2: " << collision2 << " Collisions" << std::endl;
+  outputFile << std::endl << "The number of collisions for hash3: " << collision3 << " Collisions" << std::endl;
+
+ 
+  outputFile.close();
+  return;
 }
 

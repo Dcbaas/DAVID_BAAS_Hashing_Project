@@ -18,7 +18,6 @@ public:
 
   bool insert(const T &element, int index){
     data[index].insert(data[index].begin(),element);
-    std::cout << "Inserted" << std::endl;
     return 1 < data[index].size();
   }
  /*********************************************************************
@@ -42,12 +41,14 @@ public:
 
   }
  /**********************************************************************
- * The second hash function 
- *
- * 
+ * The second hash function takes the first five chars of the string
+ * and multipies each by a the numbers in order 17, 19, 23, 29, 31 while 
+ * summing them althogether. This is all divided by the size of the
+ * structure. 
  **********************************************************************/
   int hash2(const std::string key){
-    return 0;
+    return (key[0] * 17 + key[1] * 19 + key[2] * 23 + key[3] * 29 +
+    key[4] * 31) % SIZE;
   }
 
   int hash3(const std::string key){

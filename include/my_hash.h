@@ -16,7 +16,7 @@ public:
   ~my_hash(){}
 
   bool insert(const T &element, int index){
-    data[index].insert(data[index].begin(),std::move(element));
+    data[index].insert(0,element);
     return 1 < data[index].size();
   }
  /*********************************************************************

@@ -1,6 +1,7 @@
 #include <vector>
 #include <cstdlib> 
 #include <string> 
+#include <iostream>
 
 template <typename T>
 
@@ -16,7 +17,8 @@ public:
   ~my_hash(){}
 
   bool insert(const T &element, int index){
-    data[index].insert(0,element);
+    data[index].insert(data[index].begin(),element);
+    std::cout << "Inserted" << std::endl;
     return 1 < data[index].size();
   }
  /*********************************************************************
@@ -36,7 +38,7 @@ public:
     for(char c: key)
       hash += c;
 
-    return (hash * rand() % 5 + 1) % SIZE;
+    return hash % SIZE;
 
   }
  /**********************************************************************

@@ -38,6 +38,7 @@ int main(int argc, char** argv){
   //three my_hash variables while also checking for collisions.
   while(std::getline(in,input)){
     Superhero hero = superheroBuilder(input);
+    std::cout << hero.getName() << std::endl;
     if(hash1.insert(hero, hash1.hash1(hero.getName())))
       ++collision1;
   }

@@ -41,12 +41,12 @@ int main(int argc, char** argv){
     Superhero hero = superheroBuilder(input);
     if(hashmap1.insert(hero, hashmap1.hash1(hero.getName()))){
       ++collision1;
-      std::cout << "Collide 1" << std::endl;
+     // std::cout << "Collide 1" << std::endl;
       }
 
     if(hashmap2.insert(hero, hashmap2.hash2(hero.getName()))){
       ++collision2;
-      std::cout << "Collide 2" << std::endl;
+     // std::cout << "Collide 2" << std::endl;
       }
   }
   
@@ -112,7 +112,7 @@ Superhero superheroBuilder(std::string &input){
 }
 
 void writeFile(int &collision1, int &collision2, int &collision3){
-  std::ofstream outputFile("Collisions Report.txt");
+  std::ofstream outputFile("README.md");
 
   outputFile << "The number of collisions for hash1: " << collision1 << " Collisions" << std::endl;
   outputFile << std::endl << "The number of collisions for hash2: " << collision2 << " Collisions" << std::endl;

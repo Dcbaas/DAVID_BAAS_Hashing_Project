@@ -56,10 +56,15 @@ public:
  *
  **********************************************************************/
   int hash3(const std::string key){
-    return 0;
+   int hash{0};
+
+   for(int i{-1}; i < 10; ++i)
+     hash += rand() % key.size();
+
+   return hash % SIZE;
   }
 
-  std::vector<int> vectorSizes(){
+  std::vector<int> vectorSizes() const{
     std::vector<int> sizes;
 
     for(std::vector<T> element:data){

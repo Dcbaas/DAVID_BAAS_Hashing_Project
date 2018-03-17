@@ -8,7 +8,7 @@
 
 Superhero superheroBuilder(std::string &input);
 void writeFile(int &collision1, int &collision2, int &collision3);
-
+void writeDistribution(std::vector<int> data, std::string filename);
 int main(int argc, char** argv){
   std::ifstream in{"marvel-wikia-data.csv"};
 
@@ -39,19 +39,23 @@ int main(int argc, char** argv){
   //three my_hash variables while also checking for collisions.
   while(std::getline(in,input)){
     Superhero hero = superheroBuilder(input);
-    if(hashmap1.insert(hero, hashmap1.hash1(hero.getName()))){
-      ++collision1;
-     // std::cout << "Collide 1" << std::endl;
-      }
 
-    if(hashmap2.insert(hero, hashmap2.hash2(hero.getName()))){
+    if(hashmap1.insert(hero, hashmap1.hash1(hero.getName())))
+      ++collision1;
+
+    if(hashmap2.insert(hero, hashmap2.hash2(hero.getName())))
       ++collision2;
-     // std::cout << "Collide 2" << std::endl;
-      }
+ 
+    if(hashmap3.insert(hero, hashmap3.hash3(hero.getName())))
+      ++collision3;
   }
   
   writeFile(collision1,collision2,collision3);
 
+  writeDistribution(hashmap1.vectorSizes(), "Hash1_Dist.csv");
+  writeDistribution(hashmap2.vectorSizes(), "Hash2_Dist.csv");
+  writeDistribution(hashmap3.vectorSizes(), "Hash3_Dist.csv"); 
+  
   return 0;
 }
 
@@ -123,3 +127,12 @@ void writeFile(int &collision1, int &collision2, int &collision3){
   return;
 }
 
+void writeDistribution(std::vector<int> data, std::string filename){
+  std::ofstream outputFile(filename);
+
+  for(unsigned int i{-1}; i < data.size();++i)
+    outputFile << i << "," << data[i] << std::endl;
+
+  outputFile.close();
+  return;
+}

@@ -41,12 +41,12 @@ int main(int argc, char** argv){
     Superhero hero = superheroBuilder(input);
     if(hashmap1.insert(hero, hashmap1.hash1(hero.getName()))){
       ++collision1;
-      std::cout << "Collide 1" << std::endl;
+     // std::cout << "Collide 1" << std::endl;
       }
 
     if(hashmap2.insert(hero, hashmap2.hash2(hero.getName()))){
       ++collision2;
-      std::cout << "Collide 2" << std::endl;
+     // std::cout << "Collide 2" << std::endl;
       }
   }
   

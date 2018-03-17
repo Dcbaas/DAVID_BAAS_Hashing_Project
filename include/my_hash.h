@@ -24,9 +24,6 @@ public:
  * The first hash function takes all of the chars of the key and sums
  * up thier value. This is followed by at sum being muliplied by a 
  * number between 1-5. This all modded by the size of the list. 
- * 
- * DO NOT USE THIS HASH FUNCTION IN CONJUNCTION WITH THE OTHER TWO
- * IT DEFEATS THE GOALS OF THE PROJECT.
  *
  * param: key string being used to assign a hash value. 
  * return: int result which will be the hash value. 
@@ -37,7 +34,9 @@ public:
     for(char c: key)
       hash += c;
 
-    return hash % SIZE;
+    int randNum{rand() % 5};
+  
+    return (hash * randNum) % SIZE;
 
   }
  /**********************************************************************
@@ -58,6 +57,15 @@ public:
  **********************************************************************/
   int hash3(const std::string key){
     return 0;
+  }
+
+  std::vector<int> vectorSizes(){
+    std::vector<int> sizes;
+
+    for(std::vector<T> element:data){
+      sizes.push_back(element.size());
+    }
+    return sizes;
   }
 private:
   //A vector of Vectors to hold collisions. 

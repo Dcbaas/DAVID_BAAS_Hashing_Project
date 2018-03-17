@@ -8,7 +8,7 @@
 
 Superhero superheroBuilder(std::string &input);
 void writeFile(int &collision1, int &collision2, int &collision3);
-void writeDistribution(std::vector<int> data, std::string filename);
+//void writeDistribution(std::vector<int> data, std::string filename);
 int main(int argc, char** argv){
   std::ifstream in{"marvel-wikia-data.csv"};
 
@@ -52,9 +52,9 @@ int main(int argc, char** argv){
   
   writeFile(collision1,collision2,collision3);
 
-  writeDistribution(hashmap1.vectorSizes(), "Hash1_Dist.csv");
-  writeDistribution(hashmap2.vectorSizes(), "Hash2_Dist.csv");
-  writeDistribution(hashmap3.vectorSizes(), "Hash3_Dist.csv"); 
+  //writeDistribution(hashmap1.vectorSizes(), "Hash1_Dist.csv");
+  //writeDistribution(hashmap2.vectorSizes(), "Hash2_Dist.csv");
+  //writeDistribution(hashmap3.vectorSizes(), "Hash3_Dist.csv"); 
   
   return 0;
 }
@@ -127,12 +127,12 @@ void writeFile(int &collision1, int &collision2, int &collision3){
   return;
 }
 
-void writeDistribution(std::vector<int> data, std::string filename){
-  std::ofstream outputFile(filename);
+//void writeDistribution(std::vector<int> data, std::string filename){
+//  std::ofstream outputFile(filename);
 
-  for(unsigned int i{-1}; i < data.size();++i)
-    outputFile << i << "," << data[i] << std::endl;
+  //for(unsigned int i{-1}; i < data.size();++i)
+    //outputFile << i << "," << data[i] << std::endl;
 
-  outputFile.close();
-  return;
-}
+  //outputFile.close();
+  //return;
+//}

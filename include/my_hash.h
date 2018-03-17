@@ -32,7 +32,7 @@ public:
  * return: int result which will be the hash value. 
  *********************************************************************/
   int hash1(const std::string key){
-    int hash(0);
+    int hash{0};
 
     for(char c: key)
       hash += c;
@@ -50,7 +50,12 @@ public:
     return (key[0] * 17 + key[1] * 19 + key[2] * 23 + key[3] * 29 +
     key[4] * 31) % SIZE;
   }
-
+ /**********************************************************************
+ * The third hash function takes 10 random chars from the key and 
+ * sums them up together modding it by the size of the structure.
+ * 
+ *
+ **********************************************************************/
   int hash3(const std::string key){
     return 0;
   }
@@ -59,5 +64,5 @@ private:
   std::vector<std::vector<T>> data;  
 
   //The size of the data array. A constant number that must always be prime.
-  const int SIZE = 17011;
+  const int SIZE{17011};
 };

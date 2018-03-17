@@ -112,7 +112,7 @@ Superhero superheroBuilder(std::string &input){
 }
 
 void writeFile(int &collision1, int &collision2, int &collision3){
-  std::ofstream outputFile("Collisions Report.txt");
+  std::ofstream outputFile("README.md");
 
   outputFile << "The number of collisions for hash1: " << collision1 << " Collisions" << std::endl;
   outputFile << std::endl << "The number of collisions for hash2: " << collision2 << " Collisions" << std::endl;

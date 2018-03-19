@@ -6,9 +6,26 @@
 #include "Superhero.h"
 #include "my_hash.h"
 
+ /**********************************************************************
+ * The main.cpp file uses imperitive programming to declare three
+ * my_hash structures and use them individually to test all three hash
+ * functions individually of each other. The program starts by loading
+ * the database file for each line of the database file the elements 
+ * of the line are parsed and then used to construct a Superhero object
+ * from there the object is then passed into all three my_hash data
+ * structrues where for each structure, a different hash function is
+ * used to insert the object. Collisions for each my_hash is tracked 
+ * everytime an item is inserted. When all of the items have been 
+ * successfully inserted into the my_hash structures, a report on the 
+ * total number of collisons is written to a file and the program ends.
+ *
+ * Author: David Baas
+ * Version: 1.0
+ **********************************************************************/ 
 Superhero superheroBuilder(std::string &input);
 void writeFile(int &collision1, int &collision2, int &collision3);
-//void writeDistribution(std::vector<int> data, std::string filename);
+
+
 int main(int argc, char** argv){
   std::ifstream in{"marvel-wikia-data.csv"};
 
@@ -50,16 +67,23 @@ int main(int argc, char** argv){
       ++collision3;
   }
   
-  writeFile(collision1,collision2,collision3);
-
-  //writeDistribution(hashmap1.vectorSizes(), "Hash1_Dist.csv");
-  //writeDistribution(hashmap2.vectorSizes(), "Hash2_Dist.csv");
-  //writeDistribution(hashmap3.vectorSizes(), "Hash3_Dist.csv"); 
+  writeFile(collision1,collision2,collision3); 
   
   return 0;
 }
 
-
+ /***********************************************************************
+ * The superheroBuilder function takes a string that represents one line
+ * of the file and parses it into an array of strings. From there, each
+ * string is parsed to each variable that creates a Superhero and in 
+ * turn, those are passed into a Superhero consructor which is returned
+ * to the main method. The data coming from the database file isn't 
+ * uniform therefore certian variables have checks performed on them 
+ * to ensure all of the data is created correctly.
+ *
+ * param: input a string that is a line of the database file
+ * return: A Superhero Object. 
+ **********************************************************************/ 
 Superhero superheroBuilder(std::string &input){
     std::string params[13];
 
@@ -115,6 +139,15 @@ Superhero superheroBuilder(std::string &input){
     return hero;
 }
 
+/***********************************************************************
+ * The writeFile function takes all of the collison values as input
+ * parameters and writes them to a file with formatting which talks 
+ * about how many collisons a given hash created.
+ *
+ * param: collision1 int that is the number of collisions for hash1
+ * param: collision2 int that is the number of collisions for hash2
+ * param: collision3 int that is the number of collisions for hash3
+***********************************************************************/ 
 void writeFile(int &collision1, int &collision2, int &collision3){
   std::ofstream outputFile("README.md");
 
@@ -126,13 +159,3 @@ void writeFile(int &collision1, int &collision2, int &collision3){
   outputFile.close();
   return;
 }
-
-//void writeDistribution(std::vector<int> data, std::string filename){
-//  std::ofstream outputFile(filename);
-
-  //for(unsigned int i{-1}; i < data.size();++i)
-    //outputFile << i << "," << data[i] << std::endl;
-
-  //outputFile.close();
-  //return;
-//}

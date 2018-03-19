@@ -1,7 +1,7 @@
 #include <string>
 #include "Superhero.h"
-
-
+//For information on the Superhero Class, please refer to the header file
+//Superhero.h.
   Superhero::Superhero(int page_id, const std::string &name, const std::string &urlslug, const std::string &id,
                        const std::string &alignment, char eye_color, char hair_color, char sex, const std::string &gsm,
                        bool alive, int appearances, const std::string &first_apperance, int year) :

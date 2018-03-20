@@ -1,6 +1,7 @@
 #include <vector>
-#include <cstdlib> 
-#include <string> 
+#include <string>
+#include "Superhero.h" 
+
 
  /*********************************************************************
  * The my_hash class is a generic hashmap class that stores a genric
@@ -94,6 +95,28 @@ public:
    for(int i{-1}; i < 10; ++i)
      hash += key.at(rand() % key.size());
    return hash % SIZE;
+  }
+
+  Superhero & get(const std::string name, int hashMode){
+
+    std::vector<Superhero> elements;
+    switch(hashMode){
+      case 1:
+        elements = data[hash1(name)];
+        break;
+      case 2:
+        elements = data[hash2(name)];
+        break;
+      case 3:
+        elements = data[hash3(name)];
+        break;
+    }
+
+    for(Superhero h: elements){
+      if(h.getName() == name)
+        return h;
+    }
+    return -1;
   }
 
 private:

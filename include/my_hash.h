@@ -50,8 +50,7 @@ public:
 
  /*********************************************************************
  * The first hash function takes all of the chars of the key and sums
- * up thier value. This is followed by at sum being muliplied by a 
- * number between 1-5. This all modded by the size of the list. 
+ * up thier value. This all modded by the size of the list. 
  *
  * param: key string being used to assign a hash value. 
  * return: int result which will be the hash value. 
@@ -61,11 +60,8 @@ public:
 
     for(char c: key)
       hash += c;
-
-    int randNum{rand() % 5};
-  
-    return (hash * randNum) % SIZE;
-
+   
+    return hash % SIZE
   }
 
  /**********************************************************************
@@ -83,19 +79,16 @@ public:
   }
 
  /**********************************************************************
- * The third hash function takes 10 random chars from the key and 
- * sums them up together modding it by the size of the structure.
+ * The third hash function takes the first two chars of the string and
+ * totals them up in a quadradic equation which is then modded by the 
+ * size of the data structure.
  * 
  * param: key string being used to assign a hash value.
  * return: int result which will be the hash value.
  **********************************************************************/
   int hash3(const std::string key){
-   int hash{0};
-
-   for(int i{-1}; i < 10; ++i)
-     hash += key.at(rand() % key.size());
-   return hash % SIZE;
-  }
+  return ((3 * (key[0] * key[0])) + 5*key[1] + 7) % SIZE;
+}
 
   Superhero & get(const std::string name, int hashMode){
 

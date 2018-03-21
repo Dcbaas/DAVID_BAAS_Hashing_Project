@@ -145,11 +145,11 @@ public:
         elements = data[hash4(name)];
         break;
     }
-
-    for(Superhero h: elements){
-      if(h.getName() == name)
-        return h;
-    }
+    if(elements.size() != 0)
+      for(Superhero h: elements){
+        if(h.getName() == name)
+          return h;
+      }
     return -1;
   }
 

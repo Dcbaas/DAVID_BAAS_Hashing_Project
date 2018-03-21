@@ -152,6 +152,7 @@ Superhero superheroBuilder(std::string &input){
  * param: collision1 int that is the number of collisions for hash1
  * param: collision2 int that is the number of collisions for hash2
  * param: collision3 int that is the number of collisions for hash3
+ * param: collision4 int that is the number of collisions for hash4
 ***********************************************************************/ 
 void writeFile(int &collision1, int &collision2, int &collision3, int &collision4){
   std::ofstream outputFile("README.md");

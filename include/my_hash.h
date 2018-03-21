@@ -52,6 +52,7 @@ public:
  /*********************************************************************
  * The first hash function takes all of the chars of the key and sums
  * up thier value. This all modded by the size of the list. 
+ * This hash came straight from the Hashing PowerPoint.
  *
  * param: key string being used to assign a hash value. 
  * return: int result which will be the hash value. 
@@ -70,6 +71,7 @@ public:
  * and multipies each by a the numbers in order 17, 19, 23, 29, 31 while 
  * summing them althogether. This is all divided by the size of the
  * structure.
+ * This has was a variation on a hash shown in the Hashing PowerPoint. 
  *
  * param: key string being used to assign a hash value.
  * return: int result which will be the hash value.

@@ -23,7 +23,7 @@
  * Version: 1.0
  **********************************************************************/ 
 Superhero superheroBuilder(std::string &input);
-void writeFile(int &collision1, int &collision2, int &collision3);
+void writeFile(int &collision1, int &collision2, int &collision3, int &collision4);
 
 
 int main(int argc, char** argv){
@@ -34,17 +34,19 @@ int main(int argc, char** argv){
     std::perror("File Error");
     return 0;
   }
-  //Three my_hash instances to store the superheros.
+  //Four my_hash instances to store the superheros.
   //One for each hash function created. 
   my_hash<Superhero> hashmap1;
   my_hash<Superhero> hashmap2;
   my_hash<Superhero> hashmap3;
+  my_hash<Superhero> hashmap4;
 
-  //Three int vars to track collisions for each
+  //Four int vars to track collisions for each
   //my_hash variable. 
   int collision1(0);
   int collision2(0);
   int collision3(0);
+  int collision4(0);
 
   //String to read the input from the file.
   std::string input;
@@ -65,9 +67,12 @@ int main(int argc, char** argv){
  
     if(hashmap3.insert(hero, hashmap3.hash3(hero.getName())))
       ++collision3;
+    
+    if(hashmap4.insert(hero, hashmap4.hash4(hero.getName())))
+      ++collision4;
   }
   
-  writeFile(collision1,collision2,collision3); 
+  writeFile(collision1,collision2,collision3,collision4); 
   
   return 0;
 }
@@ -148,13 +153,13 @@ Superhero superheroBuilder(std::string &input){
  * param: collision2 int that is the number of collisions for hash2
  * param: collision3 int that is the number of collisions for hash3
 ***********************************************************************/ 
-void writeFile(int &collision1, int &collision2, int &collision3){
+void writeFile(int &collision1, int &collision2, int &collision3, int &collision4){
   std::ofstream outputFile("README.md");
 
   outputFile << "The number of collisions for hash1: " << collision1 << " Collisions" << std::endl;
   outputFile << std::endl << "The number of collisions for hash2: " << collision2 << " Collisions" << std::endl;
   outputFile << std::endl << "The number of collisions for hash3: " << collision3 << " Collisions" << std::endl;
-
+  outputFile << std::endl << "The number of collisions for hash4: " << collision4 << " Collisions" << std::endl;
  
   outputFile.close();
   return;

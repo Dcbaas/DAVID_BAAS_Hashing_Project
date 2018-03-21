@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
-#include "Superhero.h" 
+#include "Superhero.h"
+#include "md5.h" 
 
 
  /*********************************************************************
@@ -110,12 +111,8 @@ public:
     std::string md5Str = md5(key);
     std::stringstream ss;
     unsigned long hash;
-    ss << std::dec << md5Str.substr(0, md5Str.size()/2);
+    ss << std::dec << md5Str;
     ss >> hash;
-    if(hash == 0){
-      std::cout << key << std::endl;
-      std::cout << md5Str << std::endl;
-    }
     return hash % SIZE; 
 }
 

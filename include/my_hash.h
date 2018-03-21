@@ -56,12 +56,12 @@ public:
  * return: int result which will be the hash value. 
  *********************************************************************/
   int hash1(const std::string key){
-    int hash{0};
+   unsigned int hash{0};
 
     for(char c: key)
       hash += c;
    
-    return hash % SIZE
+    return hash % SIZE;
   }
 
  /**********************************************************************
@@ -86,9 +86,14 @@ public:
  * param: key string being used to assign a hash value.
  * return: int result which will be the hash value.
  **********************************************************************/
-  int hash3(const std::string key){
-  return ((3 * (key[0] * key[0])) + 5*key[1] + 7) % SIZE;
-}
+  unsigned int hash3(const std::string key){
+    unsigned int hash{7};
+
+    for(char c: key)
+      hash = 47 * hash + c;
+
+    return hash % SIZE; 
+  }
 
   Superhero & get(const std::string name, int hashMode){
 

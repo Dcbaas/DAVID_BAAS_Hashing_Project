@@ -79,10 +79,11 @@ public:
   }
 
  /**********************************************************************
- * The third hash function takes the first two chars of the string and
- * totals them up in a quadradic equation which is then modded by the 
- * size of the data structure.
- * 
+ * The third hash function takes an unsigned int starting at 7 and for
+ * every char the hash is multiplied by itself * 47 and the value of the
+ * char is added to the hash. This is a modified version of a hash 
+ * function found in the Hashing PowerPoint.
+ *
  * param: key string being used to assign a hash value.
  * return: int result which will be the hash value.
  **********************************************************************/
@@ -94,6 +95,29 @@ public:
 
     return hash % SIZE; 
   }
+ /**********************************************************************
+ * This extra hash function takes the string and encodes it using 
+ * the md5 standard. The enoding is done from a third party library 
+ * which only returns a hex value. This hex value is converted to a 
+ * decimal value and is stored in a long which is modded by the 
+ * table size. The md5 library was found at:
+ * http://www.zedwood.com/article/cpp-md5-function
+ *
+ * param: key string being used to assign a hash value.
+ * return: int result which will be the hash value.
+ **********************************************************************/
+ unsigned long hash4(const std::string key){
+    std::string md5Str = md5(key);
+    std::stringstream ss;
+    unsigned long hash;
+    ss << std::dec << md5Str.substr(0, md5Str.size()/2);
+    ss >> hash;
+    if(hash == 0){
+      std::cout << key << std::endl;
+      std::cout << md5Str << std::endl;
+    }
+    return hash % SIZE; 
+}
 
   Superhero & get(const std::string name, int hashMode){
 

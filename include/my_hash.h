@@ -116,6 +116,16 @@ public:
     return hash % SIZE; 
 }
 
+ /**********************************************************************
+ * If the my_hash structure is of the type Superhero, the get method 
+ * will search for a Superhero based off its name as that is what its
+ * key is based off of. 
+ *
+ * param: name the name of the Superhero
+ * param hashMode coressponds to the hash functions used to insert the
+ * element
+ * return: a Superhero with a matching name. -1 otherwise.
+ **********************************************************************/
   Superhero & get(const std::string name, int hashMode){
 
     std::vector<Superhero> elements;
@@ -128,6 +138,9 @@ public:
         break;
       case 3:
         elements = data[hash3(name)];
+        break;
+      case 4:
+        elements = data[hash4(name)];
         break;
     }
 
